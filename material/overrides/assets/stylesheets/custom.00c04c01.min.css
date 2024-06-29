@@ -13,10 +13,14 @@
 :root > * {
   --md-keyword-bg-color-rouge: rgba(231, 175, 250, 0.5);
   --md-keyword-bg-color-jade: rgba(11, 213, 112, 0.4);
-  --md-keyword-bg-color-turquoise: rgba(26, 188, 156, 1);
-  --md-keyword-bg-color-amethyst: rgba(155, 89, 182, 1);
-  --md-keyword-bg-color-carrot: rgba(230, 126, 34, 1);
-  --md-keyword-bg-color-skype: rgba(0, 175, 240, 1);
+  --md-keyword-bg-color-carrot: rgba(230, 126, 34, 0.6);
+  --md-keyword-bg-color-skype: rgba(112, 178, 219, 0.5);
+  --md-keyword-bg-color-amber: rgba(212, 167, 63, 0.5);
+  --md-keyword-bg-color-cyangray: rgba(171, 184, 195, 0.6);
+  --md-keyword-fg-color-vividorange: rgba(255, 105, 0, 1);
+  --md-keyword-fg-color-vividgreen: rgba(0, 208, 132, 1);
+  --md-keyword-fg-color-vividskype: rgba(102, 150, 255, 1);
+  --md-keyword-fg-color-red: rgba(209, 0, 77, 1);
 }
 .md-typeset .twitter {
   color: #00acee;
@@ -328,7 +332,7 @@
   border-color: var(--md-primary-bg-color);
   color: #894da8;
   /* margin-left: 1rem; */
-  margin-right: 1.2rem;
+  /* margin-right: 1.2rem; */
   padding: 6px;
   border-radius: 6px;
   text-align: center;
@@ -499,16 +503,6 @@
   padding: 2px 4px;
   border-radius: 5px;
 }
-.md-typeset .turquoise {
-  background-color: var(--md-keyword-bg-color-turquoise);
-  padding: 2px 4px;
-  border-radius: 5px;
-}
-.md-typeset .amethyst {
-  background-color: var(--md-keyword-bg-color-amethyst);
-  padding: 2px 4px;
-  border-radius: 5px;
-}
 .md-typeset .carrot {
   background-color: var(--md-keyword-bg-color-carrot);
   padding: 2px 4px;
@@ -517,5 +511,39 @@
 .md-typeset .skype {
   background-color: var(--md-keyword-bg-color-skype);
   padding: 2px 4px;
+  border-radius: 5px;
+}
+.md-typeset .amber {
+  background-color: var(--md-keyword-bg-color-amber);
+  padding: 2px 4px;
+  border-radius: 5px;
+}
+.md-typeset .cyangray {
+  background-color: var(--md-keyword-bg-color-cyangray);
+  padding: 2px 4px;
+  border-radius: 5px;
+}
+.md-typeset .vividgreen {
+  color: var(--md-keyword-fg-color-vividgreen);
+  font-weight: normal;
+  font-size: 20px;
+  border-radius: 5px;
+}
+.md-typeset .vividorange {
+  color: var(--md-keyword-fg-color-vividorange);
+  font-weight: normal;
+  font-size: 20px;
+  border-radius: 5px;
+}
+.md-typeset .vividskype {
+  color: var(--md-keyword-fg-color-vividskype);
+  /* font-weight: normal; */
+  /* font-size: 20px; */
+  border-radius: 5px;
+}
+.md-typeset .red {
+  color: var(--md-keyword-fg-color-red);
+  /* font-weight: normal; */
+  /* font-size: 20px; */
   border-radius: 5px;
 }

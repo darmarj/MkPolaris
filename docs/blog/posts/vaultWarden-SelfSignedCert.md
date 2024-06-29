@@ -2,7 +2,7 @@
 date: 2022-01-13
 authors: [darmarj]
 description: >
-  vaultWarden implementation
+  vaultWarden implementation with self-signed cert(openssl) assignment
 categories:
   - vaultWarden
 ---

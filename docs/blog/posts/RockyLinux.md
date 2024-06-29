@@ -18,7 +18,7 @@ __[Rocky Linux](https://rockylinux.org/) is an open-source enterprise operating 
 |   __CN__    | eScience Center, Nanjing University | mirrors.nju.edu.cn | 10000     |
 |   __SG__    |               RPMDB.org             | sg.rpmdb.org       | 10000     |
 
-``` bash title="Replace Method"
+```shell title="Replace Method"
 sed -e 's|^mirrorlist=|#mirrorlist=|g' \
     -e 's|^#baseurl=http://dl.rockylinux.org/$contentdir|baseurl=https://ftp.jaist.ac.jp/rocky|g'
     -i.bak \
@@ -27,7 +27,7 @@ sed -e 's|^mirrorlist=|#mirrorlist=|g' \
 dnf makecache
 ```
 
-``` bash title="Revert Method"
+```shell title="Revert Method"
 sed -e 's|^#mirrorlist=|mirrorlist=|g' \
     -e 's|^baseurl=https://mirrors.sjtug.sjtu.edu.cn/rocky|#baseurl=http://dl.rockylinux.org/$contentdir|g' \
     -i.bak \
@@ -37,14 +37,20 @@ dnf makecache
 ```
 
 ### Docker
-``` shell title="docker repo & service control"
-dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo && dnf update
-dnf install -y docker-ce docker-ce-cli containerd.io
-systemctl enable --now docker
-systemctl status docker
+```shell title="docker repo & service control"
+sudo dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo && dnf update
+sudo dnf install -y docker-ce docker-ce-cli containerd.io
+sudo systemctl enable --now docker
+sudo systemctl status docker
 ```
+
+### Docker User Group
+```shell
+sudo usermod -aG docker $USER
+```
+
 !!! tip "KMS Service"
-    ``` shell
+    ```shell
     docker pull mikolatero/vlmcsd   # updated last year ago
     docker run -d -p 1688:1688 --restart=always --name vlmcsd mikolatero/vlmcsd
 
@@ -53,16 +59,9 @@ systemctl status docker
     ```
 
 ### Docker-Compose
-``` shell title="docker-compose installation"
+```shell title="docker-compose installation"
 e.g. #VERSION = 1.29.2
 sudo curl -L "https://github.com/docker/compose/releases/download/#VERSION/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
 ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
-```
-``` markdown title="Text with annotations"
-Lorem ipsum dolor sit amet, (1) consectetur adipiscing elit.
-{ .annotate }
-
-1.  :man_raising_hand: I'm an annotation! I can contain `code`, __formatted
-    text__, images, ... basically anything that can be expressed in Markdown.
 ```
