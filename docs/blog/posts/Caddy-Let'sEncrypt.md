@@ -141,8 +141,10 @@ CLOUDFLARE_API_TOKEN=<YOUR_TOKEN>           # add your token
 <span class="vividgreen">Caddy Docker Compose File</span>
 
 Create <span class="cyangray">docker-compose.yml</span> with the following content:
+[^Changelog01]
+[^Changelog02]
+[^Changelog03]
 ```yaml hl_lines="18 23"
-version: "3.9"
 
 services:
 
@@ -176,6 +178,12 @@ networks:
   caddynet:
     attachable: true
     driver: bridge
+    driver_opts:
+      com.docker.network.bridge.name: docker_caddy
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.19.0.0/16
 ```
 
 !!! tip
@@ -265,5 +273,32 @@ Finally make sure to restart pveproxy service:
 ```bash title="💁‍♀️ Pveproxy service"
 service pveproxy restart
 ```
-
 Congratulations! Now the Proxmox web interface should run on HTTPS Port 443 exclusively.
+
+[^Changelog01]:
+Added the option <span class="carrot">com.docker.network.bridge.name</span> in `docker-compose.yml` to set the name of the network interface Docker creates for Caddy.<p style="text-align:right;">[2024-06-30]</p>
+```yaml
+networks:
+
+  caddynet:
+    driver_opts:
+      com.docker.network.bridge.name: docker_caddy
+```
+[^Changelog02]:
+Configured a static <span class="carrot">IPv4 subnet</span> to be used in firewall rules.<p style="text-align:right;">[2024-06-30]</p>
+```yaml
+networks:
+
+  caddynet:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.19.0.0/16
+```
+[^Changelog03]:
+Removed the <span class="carrot">version</span> from `docker-compose.yml`; a warning mentions that it’s obsolete.<p style="text-align:right;">[2024-06-20]</p>
+```yaml
+version: "3.9"
+```
+
+:material-google-downasaur: [Helge Klein](https://helgeklein.com/blog/automatic-https-certificates-for-services-on-internal-home-network-without-opening-firewall-port/#caddy-container-on-proxmox-ve)

@@ -42,6 +42,7 @@ theme:
     - content.action.view
     - content.code.annotate
     - content.code.copy
+    - content.footnote.tooltips
     # - content.code.select
     # - content.tabs.link
     - content.tooltips
@@ -181,6 +182,9 @@ nav:
       - Kubernetes:
           - Architecture: DevOps/Kubernetes/architecture.md
           - Kubernetes: DevOps/Kubernetes/kubernetes.md
+      - Ansible:
+          - Architecture: DevOps/Ansible/architecture.md
+          - Inventories: DevOps/Ansible/inventories.md
   - GNU/Linux:
       # - Kernel:
       - Network: Linux/Network/NetCat.md
@@ -198,6 +202,5 @@ nav:
                   - Linux/Gentoo/System.md
                   - Linux/Gentoo/Tools.md
                   - Linux/Gentoo/Bootloader.md
-
   - Blog:
       - blog/index.md
