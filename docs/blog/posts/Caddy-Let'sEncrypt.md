@@ -301,4 +301,4 @@ Removed the <span class="carrot">version</span> from `docker-compose.yml`; a war
 version: "3.9"
 ```
 
-:material-google-downasaur: [Helge Klein](https://helgeklein.com/blog/automatic-https-certificates-for-services-on-internal-home-network-without-opening-firewall-port/#caddy-container-on-proxmox-ve)
+:material-google-downasaur: [Helge Klein --- Caddy Container on Proxmox](https://helgeklein.com/blog/automatic-https-certificates-for-services-on-internal-home-network-without-opening-firewall-port/#caddy-container-on-proxmox-ve)
