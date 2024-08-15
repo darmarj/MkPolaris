@@ -166,25 +166,26 @@ markdown_extensions:
 # Page tree
 nav:
   - Home: index.md
-  - DevOps:
+  - Container:
       - Container Runtime:
           - Containerd: DevOps/Container/containerd.md
           - Docker: DevOps/Docker/docker.md
           - Namespace: DevOps/Container/namespace.md
           - Cgroups: DevOps/Container/cgroups.md
           - Nerdctl: DevOps/Container/nerdctl.md
-      - Terraform:
-          - Kubernetes: DevOps/Terraform/Kubernetes.md
-          - KVM: DevOps/Terraform/KVM.md
-          - Proxmox: DevOps/Terraform/Proxmox.md
       - Rancher:
           - K3s: DevOps/Rancher/K3s.md
       - Kubernetes:
           - Architecture: DevOps/Kubernetes/architecture.md
-          - Kubernetes: DevOps/Kubernetes/kubernetes.md
-      - Ansible:
-          - Architecture: DevOps/Ansible/architecture.md
-          - Inventories: DevOps/Ansible/inventories.md
+  - Terraform:
+      - Kubernetes: DevOps/Terraform/Kubernetes.md
+      - KVM: DevOps/Terraform/KVM.md
+      - Proxmox: DevOps/Terraform/Proxmox.md
+      - Kubernetes: DevOps/Kubernetes/kubernetes.md
+  - Ansible:
+      - Architecture: DevOps/Ansible/architecture.md
+      - Ad-Hoc: DevOps/Ansible/ad-Hoc.md
+      - Playbooks: DevOps/Ansible/playbooks.md
   - GNU/Linux:
       # - Kernel:
       - Network: Linux/Network/NetCat.md
