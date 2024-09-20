@@ -186,6 +186,8 @@ nav:
       - Architecture: DevOps/Ansible/architecture.md
       - Ad-Hoc: DevOps/Ansible/ad-Hoc.md
       - Playbooks: DevOps/Ansible/playbooks.md
+      - Beyond the basic: DevOps/Ansible/beyond-the-basic.md
+      - Playbook Organization - Roles, Includes, and Imports: DevOps/Ansible/playbook-organization.md
   - GNU/Linux:
       # - Kernel:
       - Network: Linux/Network/NetCat.md

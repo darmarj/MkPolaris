@@ -202,10 +202,13 @@ Prefer setting <span class="carrot">remote_user</span> in the `hosts` file and <
     server.listen(3000);
     ```
 
+### Be able to visit at the browser
+`http://HOST_NAME`
+
 ## Real-World playbook: Ubuntu LAMP server with Drupal
 <figure markdown="span">
   [![Drupal](../../assets/images/Drupal.png)](../../assets/images/Drupal.png "Drupal")
- <!-- <figcaption>Node.js</figcaption> -->
+ <!-- <figcaption>Drupal</figcaption> -->
 </figure>
 
 === ":octicons-plug-16: playbook"
@@ -462,6 +465,8 @@ Prefer setting <span class="carrot">remote_user</span> in the `hosts` file and <
     ansible_user=johndoe
     ansible_ssh_private_key_file=/PATH/TO/PUBKEY
     ```
+### Be able to visit at the browser
+`http://HOST_NAME`
 
 ### Ansible command module
 !!! abstract "Ansible command module > shell > raw"
@@ -470,3 +475,110 @@ Prefer setting <span class="carrot">remote_user</span> in the `hosts` file and <
 :material-google-downasaur: [Composer](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/user_module.html)
 :material-google-downasaur: [Drush](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/user_module.html)
 :material-google-downasaur: [Drupal](https://www.drupal.org/drupal-wiki)
+
+## Real-World playbook: Ubuntu server with Solr
+<figure markdown="span">
+  [![Drupal](../../assets/images/Solr.png)](../../assets/images/Solr.png "Solr")
+ <!-- <figcaption>Solr</figcaption> -->
+</figure>
+
+=== ":octicons-plug-16: playbook"
+    ```yaml hl_lines="20"
+    ---
+    - hosts: all
+      become: true
+
+      vars_files:
+        - vars.yml
+
+      pre_tasks:
+        - name: Update apt cache if needed.
+          apt: update_cache=true cache_valid_time=3600
+
+      tasks:
+        - name: Install Java.
+          apt: name=openjdk-11-jdk state=present
+
+        - name: Download Solr.
+          get_url:
+            url: "https://archive.apache.org/dist/lucene/solr/{{ solr_version }}/solr-{{ solr_version }}.tgz"
+            url: "https://archive.apache.org/dist/solr/solr/{{ solr_version }}/solr-{{ solr_version }}.tgz"
+            dest: "{{ download_dir }}/solr-{{ solr_version }}.tgz"
+            checksum: "{{ solr_checksum }}"
+
+        - name: Expand Solr.
+          unarchive:
+            src: "{{ download_dir }}/solr-{{ solr_version }}.tgz"
+            dest: "{{ download_dir }}"
+            remote_src: true
+            creates: "{{ download_dir }}/solr-{{ solr_version }}/README.txt"
+
+        - name: Run Solr installation script.
+          command: >
+            {{ download_dir }}/solr-{{ solr_version }}/bin/install_solr_service.sh
+            {{ download_dir }}/solr-{{ solr_version }}.tgz
+            -i /opt
+            -d /var/solr
+            -u solr
+            -s solr
+            -p 8983
+            creates={{ solr_dir }}/bin/solr
+
+        - name: Adjust setting for Solr public access
+          lineinfile:
+            path: /etc/default/solr.in.sh
+            regexp: '^SOLR_JETTY_HOST'
+            insertafter: '^#SOLR_JETTY_HOST'
+            line: SOLR_JETTY_HOST="0.0.0.0"
+            state: present
+
+        - name: Restart Solr Service
+          service: name=solr state=restarted
+    ```
+
+!!! warning
+    If pass a directory to the `dest` parameter, Ansible will place the file inside, but will always **re-download** the file on subsequent runs of the playbook (and overwrite the existing download if it has changed).
+
+    <span class="green", font-weight=small, font-size=10px>**To avoid this extra overhead, give the full path to the download file.**</span>
+
+=== ":octicons-cpu-16: var"
+    ```yaml
+    ---
+    # The directory into which Solr will be downloaded for setup.
+    download_dir: /tmp
+
+    # The directory inside which Solr will be installed.
+    solr_dir: /opt/solr
+
+    # Solr version and download information.
+    # solr_version: 8.11.3
+    # solr_checksum: sha512:10f09b163bd9c31b2a8fdf889cf624114648e76881d69a4c096d473272c47b3cbe37ec9f9bd1980fd90967352c4052477065e165127eccb2c49a60c8d9860afc
+    solr_version: 9.6.1
+    solr_checksum: sha512:7e16aa71fc01f9d9b05e5514e35798104a18253a211426aa669aa3b91225d110a4fa1c78c9ec86b7e1909e2aae63696deffd877536790303cd0638eb7f1a8c63
+    ```
+
+=== ":octicons-rocket-16: host.ini"
+    ```ini
+    [app]
+    ubuncld
+
+    [box:children]
+    app
+
+    [box:vars]
+    ansible_user=johndoe
+    ansible_ssh_private_key_file=/PATH/TO/PUBKEY
+    ```
+=== ":octicons-webhook-16: solr collection"
+    ```bash
+    # Create a New Solr Collection - mycol1
+    sudo su - solr -c "/opt/solr/bin/solr create -c mycol1 -n data_driven_schema_configs"
+    ```
+
+### Be able to access the Solr admin interface on the browser
+`http://HOST_NAME:8983`
+
+### Check Solr Service Port
+```bash
+sudo ss -tnlp | grep 8983
+```

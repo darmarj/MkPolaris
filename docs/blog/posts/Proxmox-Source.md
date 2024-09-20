@@ -7,8 +7,6 @@ categories:
   - Proxmox
 ---
 
-
-
 # Proxmox v8 Source in PandaWorld
 
 ## Usage

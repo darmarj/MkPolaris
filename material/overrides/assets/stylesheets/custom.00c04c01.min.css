@@ -17,6 +17,7 @@
   --md-keyword-bg-color-skype: rgba(112, 178, 219, 0.5);
   --md-keyword-bg-color-amber: rgba(212, 167, 63, 0.5);
   --md-keyword-bg-color-cyangray: rgba(171, 184, 195, 0.6);
+  --md-keyword-fg-color-green: rgba(0, 208, 132, 1);
   --md-keyword-fg-color-vividorange: rgba(255, 105, 0, 1);
   --md-keyword-fg-color-vividgreen: rgba(0, 208, 132, 1);
   --md-keyword-fg-color-vividskype: rgba(102, 150, 255, 1);
@@ -520,6 +521,12 @@
 }
 .md-typeset .cyangray {
   background-color: var(--md-keyword-bg-color-cyangray);
+  padding: 2px 4px;
+  border-radius: 5px;
+}
+.md-typeset .green {
+  color: var(--md-keyword-fg-color-green);
+  font-weight: normal;
   padding: 2px 4px;
   border-radius: 5px;
 }
