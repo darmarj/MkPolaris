@@ -1,0 +1,3392 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="One branded static site from a set of Markdown files to host the documentation for Open Source or Commercial project">
+      
+      
+        <meta name="author" content="Darmarj">
+      
+      
+      
+        <link rel="prev" href="../Base%20system/">
+      
+      
+        <link rel="next" href="../System/">
+      
+      
+      <link rel="icon" href="../../../assets/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.35">
+    
+    
+      
+        <title>Configuring the kernel - MkPolaris</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.35f28582.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config",""),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  <link rel="stylesheet" href="../../../assets/stylesheets/custom.00c04c01.min.css">
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#configuring-the-kernel" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+              <button class="md-banner__button md-icon" aria-label="Don't show this again">
+                
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+              </button>
+            
+            
+  For updates follow <strong>NEWS</strong> on
+  <a href="https://github.com/darmarj">
+    <span class="twemoji twitter">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+    </span>
+    <strong>Github</strong>
+  </a>
+
+          </div>
+          
+            <script>var el=document.querySelector("[data-md-component=announce]");if(el){var content=el.querySelector(".md-typeset");__md_hash(content.innerHTML)===__md_get("__announce")&&(el.hidden=!0)}</script>
+          
+        </aside>
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="MkPolaris" class="md-header__button md-logo" aria-label="MkPolaris" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 89 89">
+  <path d="M3.136,17.387l0,42.932l42.932,21.467l-42.932,-64.399Z" />
+  <path d="M21.91,8l42.933,64.398l-18.775,9.388l-42.932,-64.399l18.774,-9.387Z" style="fill-opacity: 0.5" />
+  <path d="M67.535,17.387l-27.262,18.156l21.878,32.818l5.384,2.691l0,-53.665Z" />
+  <path d="M67.535,17.387l0,53.666l18.774,-9.388l0,-53.665l-18.774,9.387Z" style="fill-opacity: 0.25" />
+</svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MkPolaris
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Configuring the kernel
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/darmarj/MkPolaris" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    darmarj/MkPolaris
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../DevOps/Container/containerd/" class="md-tabs__link">
+          
+  
+    
+  
+  Container
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../DevOps/Terraform/Kubernetes/" class="md-tabs__link">
+          
+  
+    
+  
+  Terraform
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../DevOps/Ansible/architecture/" class="md-tabs__link">
+          
+  
+    
+  
+  Ansible
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../Network/NetCat/" class="md-tabs__link">
+          
+  
+    
+  
+  GNU/Linux
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../blog/" class="md-tabs__link">
+          
+  
+    
+  
+  Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="MkPolaris" class="md-nav__button md-logo" aria-label="MkPolaris" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 89 89">
+  <path d="M3.136,17.387l0,42.932l42.932,21.467l-42.932,-64.399Z" />
+  <path d="M21.91,8l42.933,64.398l-18.775,9.388l-42.932,-64.399l18.774,-9.387Z" style="fill-opacity: 0.5" />
+  <path d="M67.535,17.387l-27.262,18.156l21.878,32.818l5.384,2.691l0,-53.665Z" />
+  <path d="M67.535,17.387l0,53.666l18.774,-9.388l0,-53.665l-18.774,9.387Z" style="fill-opacity: 0.25" />
+</svg>
+
+    </a>
+    MkPolaris
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/darmarj/MkPolaris" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    darmarj/MkPolaris
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Container
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Container
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Container Runtime
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            Container Runtime
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DevOps/Container/containerd/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Containerd
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DevOps/Docker/docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DevOps/Container/namespace/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Namespace
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DevOps/Container/cgroups/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cgroups
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DevOps/Container/nerdctl/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Nerdctl
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Rancher
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Rancher
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DevOps/Rancher/K3s/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    K3s
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Kubernetes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Kubernetes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DevOps/Kubernetes/architecture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Architecture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Terraform
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Terraform
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DevOps/Terraform/Kubernetes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kubernetes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DevOps/Terraform/KVM/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    KVM
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DevOps/Terraform/Proxmox/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Proxmox
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DevOps/Kubernetes/kubernetes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kubernetes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Ansible
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Ansible
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DevOps/Ansible/architecture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Architecture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DevOps/Ansible/ad-Hoc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ad-Hoc
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DevOps/Ansible/playbooks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Playbooks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DevOps/Ansible/beyond-the-basic/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Beyond the basic
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DevOps/Ansible/playbook-organization/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Playbook Organization - Roles, Includes, and Imports
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    GNU/Linux
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            GNU/Linux
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Network/NetCat/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Network
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Distro
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            Distro
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5_2_1" id="__nav_5_2_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Gentoo
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_2_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            Gentoo
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2_1_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5_2_1_1" id="__nav_5_2_1_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Installation
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_5_2_1_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5_2_1_1">
+            <span class="md-nav__icon md-icon"></span>
+            Installation
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Introduction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    How to install Gentoo with EFI boot loader and OpenRC sysControl
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Media/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Choosing the media
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Network/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Network
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Prepare%20the%20disks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Prepare the disks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Stage3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installing stage3
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Base%20system/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installing base system
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Configuring the kernel
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Configuring the kernel
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installing-firmware-andor-microcode" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installing firmware and/or microcode
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Installing firmware and/or microcode">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#firmware" class="md-nav__link">
+    <span class="md-ellipsis">
+      Firmware
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#microcode" class="md-nav__link">
+    <span class="md-ellipsis">
+      Microcode
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kernel-configuration-and-compilation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Kernel configuration and compilation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Kernel configuration and compilation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#distribution-kernels-distribution-kernels" class="md-nav__link">
+    <span class="md-ellipsis">
+      Distribution kernels Distribution kernels
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Distribution kernels Distribution kernels">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#installing-the-correct-installkernel-package" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installing the correct installkernel package
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-a-distribution-kernel" class="md-nav__link">
+    <span class="md-ellipsis">
+      Install a distribution kernel
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#upgrading-and-cleaning-up" class="md-nav__link">
+    <span class="md-ellipsis">
+      Upgrading and cleaning up
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-installupgrade-tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Post-install/upgrade tasks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installing-the-kernel-sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installing the kernel sources
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#genkernel" class="md-nav__link">
+    <span class="md-ellipsis">
+      Genkernel
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Genkernel">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Generation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manual-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Manual configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Manual configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enabling-required-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enabling required options
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enabling-support-for-typical-system-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enabling support for typical system components
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#architecture-specific-kernel-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Architecture specific kernel configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compiling-and-installing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Compiling and installing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-building-an-initramfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Optional: Building an initramfs
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kernel-modules" class="md-nav__link">
+    <span class="md-ellipsis">
+      Kernel modules
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Kernel modules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#listing-available-kernel-modules" class="md-nav__link">
+    <span class="md-ellipsis">
+      Listing available kernel modules
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#force-loading-particular-kernel-modules" class="md-nav__link">
+    <span class="md-ellipsis">
+      Force loading particular kernel modules
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../System/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuring the system
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tools/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installing tools
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Bootloader/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuring the bootloader
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../blog/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Blog
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Blog
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_2" id="__nav_6_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Archive
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_2">
+            <span class="md-nav__icon md-icon"></span>
+            Archive
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blog/archive/2024/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2024
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blog/archive/2023/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2023
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blog/archive/2022/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2022
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blog/archive/2021/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2021
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_3" id="__nav_6_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Categories
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_3">
+            <span class="md-nav__icon md-icon"></span>
+            Categories
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blog/category/container/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Container
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blog/category/gnu-project/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GNU Project
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blog/category/gnome/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Gnome
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blog/category/groff--mom/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Groff &amp; MOM
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blog/category/kvm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    KVM
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blog/category/openwrt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OpenWRT
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blog/category/proxmox/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Proxmox
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blog/category/proxy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Proxy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blog/category/rockylinux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RockyLinux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blog/category/router/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Router
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blog/category/security/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Security
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blog/category/sublime/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sublime
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blog/category/synology/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Synology
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blog/category/terraform/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Terraform
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blog/category/tmux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tmux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blog/category/vagrant/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Vagrant
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blog/category/ibus-rime/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ibus-rime
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blog/category/vaultwarden/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    vaultWarden
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installing-firmware-andor-microcode" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installing firmware and/or microcode
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Installing firmware and/or microcode">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#firmware" class="md-nav__link">
+    <span class="md-ellipsis">
+      Firmware
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#microcode" class="md-nav__link">
+    <span class="md-ellipsis">
+      Microcode
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kernel-configuration-and-compilation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Kernel configuration and compilation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Kernel configuration and compilation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#distribution-kernels-distribution-kernels" class="md-nav__link">
+    <span class="md-ellipsis">
+      Distribution kernels Distribution kernels
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Distribution kernels Distribution kernels">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#installing-the-correct-installkernel-package" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installing the correct installkernel package
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-a-distribution-kernel" class="md-nav__link">
+    <span class="md-ellipsis">
+      Install a distribution kernel
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#upgrading-and-cleaning-up" class="md-nav__link">
+    <span class="md-ellipsis">
+      Upgrading and cleaning up
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-installupgrade-tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Post-install/upgrade tasks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installing-the-kernel-sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installing the kernel sources
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#genkernel" class="md-nav__link">
+    <span class="md-ellipsis">
+      Genkernel
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Genkernel">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Generation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manual-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Manual configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Manual configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enabling-required-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enabling required options
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enabling-support-for-typical-system-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enabling support for typical system components
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#architecture-specific-kernel-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Architecture specific kernel configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compiling-and-installing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Compiling and installing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-building-an-initramfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Optional: Building an initramfs
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kernel-modules" class="md-nav__link">
+    <span class="md-ellipsis">
+      Kernel modules
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Kernel modules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#listing-available-kernel-modules" class="md-nav__link">
+    <span class="md-ellipsis">
+      Listing available kernel modules
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#force-loading-particular-kernel-modules" class="md-nav__link">
+    <span class="md-ellipsis">
+      Force loading particular kernel modules
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/darmarj/MkPolaris/edit/master/docs/Linux/Gentoo/Kernel.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/darmarj/MkPolaris/raw/master/docs/Linux/Gentoo/Kernel.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+    </a>
+  
+
+
+<h1 id="configuring-the-kernel">Configuring the kernel<a class="headerlink" href="#configuring-the-kernel" title="Permanent link">&para;</a></h1>
+<h2 id="installing-firmware-andor-microcode">Installing firmware and/or microcode<a class="headerlink" href="#installing-firmware-andor-microcode" title="Permanent link">&para;</a></h2>
+<h3 id="firmware">Firmware<a class="headerlink" href="#firmware" title="Permanent link">&para;</a></h3>
+<p>Before getting to configuring kernel sections, it is beneficial to be aware that some hardware devices require additional, sometimes non-FOSS compliant, firmware to be installed on the system before they will operate correctly. This is often the case for wireless network interfaces commonly found in both desktop and laptop computers. Modern video chips from vendors like AMD, Nvidia, and Intel, often also require external firmware files to be fully functional. Most firmware for modern hardware devices can be found within the <a href="https://packages.gentoo.org/packages/sys-kernel/linux-firmware">sys-kernel/linux-firmware</a> package. This is the recommendation to have to be installed before the initial system reboot.</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>root<span class="w"> </span><span class="c1">#emerge --ask sys-kernel/linux-firmware</span>
+</span></code></pre></div>
+<div class="admonition note">
+<p>Installing certain firmware packages often requires accepting the associated firmware licenses. If necessary, visit the license handling section of the Handbook for help on accepting licenses.</p>
+</div>
+<h3 id="microcode">Microcode<a class="headerlink" href="#microcode" title="Permanent link">&para;</a></h3>
+<p>In addition to discrete graphics hardware and network interfaces, CPUs also can require firmware updates. Typically this kind of firmware is referred to as microcode. Newer revisions of microcode are sometimes necessary to patch instability, security concerns, or other miscellaneous bugs in CPU hardware.</p>
+<p>Microcode updates for AMD CPUs are distributed within the aforementioned sys-kernel/linux-firmware package. Microcode for Intel CPUs can be found within the <a href="https://packages.gentoo.org/packages/sys-firmware/intel-microcode">sys-firmware/intel-microcode</a> package, which will need to be installed separately. See the {++<a href="https://wiki.gentoo.org/wiki/Microcode">Microcode article</a>++} for more information on how to apply microcode updates.</p>
+<h2 id="kernel-configuration-and-compilation">Kernel configuration and compilation<a class="headerlink" href="#kernel-configuration-and-compilation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="#jump">Full automation approach: Distribution kernels</a></li>
+<li><a href="#2">Hybrid approach: Genkernel</a></li>
+<li><a href="#3">Full manual approach</a></li>
+</ul>
+<h3 id="distribution-kernels-distribution-kernels"><span id="jump">Distribution kernels Distribution kernels</span><a class="headerlink" href="#distribution-kernels-distribution-kernels" title="Permanent link">&para;</a></h3>
+<p>Distribution Kernels are ebuilds that cover the complete process of unpacking, configuring, compiling, and installing the kernel. The primary advantage of this method is that the kernels are updated to new versions by the package manager as part of <a class="magiclink magiclink-github magiclink-mention" href="https://github.com/world" title="GitHub User: world">@world</a> upgrade. This requires no more involvement than running an emerge command. Distribution kernels default to a configuration supporting the majority of hardware, however two mechanisms are offered for customization: savedconfig and config snippets. See the project page for more details on configuration.</p>
+<h4 id="installing-the-correct-installkernel-package">Installing the correct installkernel package<a class="headerlink" href="#installing-the-correct-installkernel-package" title="Permanent link">&para;</a></h4>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># systemd-boot as the bootloader</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>root<span class="w"> </span><span class="c1">#emerge --ask sys-kernel/installkernel-systemd-boot</span>
+</span></code></pre></div>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Grub,LILO,etc traditional layout</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>root<span class="w"> </span><span class="c1">#emerge --ask sys-kernel/installkernel-gentoo</span>
+</span></code></pre></div>
+<h4 id="install-a-distribution-kernel">Install a distribution kernel<a class="headerlink" href="#install-a-distribution-kernel" title="Permanent link">&para;</a></h4>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># build a kernel with Gentoo patches form source</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>root<span class="w"> </span><span class="c1">#emerge --ask sys-kernel/gentoo-kernel</span>
+</span></code></pre></div>
+<h4 id="upgrading-and-cleaning-up">Upgrading and cleaning up<a class="headerlink" href="#upgrading-and-cleaning-up" title="Permanent link">&para;</a></h4>
+<p>Once the kernel is installed, the package manager will automatically update it to newer versions. The previous versions will be kept until the package manager is requested to clean up stale packages. To reclaim disk space, stale packages can be trimmed by periodically running emerge with the --depclean option:
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>root<span class="w"> </span><span class="c1">#emerge --depclean</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="c1"># clean up old kernel versions as specifically</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>emerge<span class="w"> </span>--prune<span class="w"> </span>sys-kernel/gentoo-kernel<span class="w"> </span>sys-kernel/gentoo-kernel-bin
+</span></code></pre></div></p>
+<h4 id="post-installupgrade-tasks">Post-install/upgrade tasks<a class="headerlink" href="#post-installupgrade-tasks" title="Permanent link">&para;</a></h4>
+<p>Distribution kernels are capable of rebuilding kernel modules installed by other packages. linux-mod.eclass provides the dist-kernel USE flag which controls a subslot dependency on <a href="https://packages.gentoo.org/packages/virtual/dist-kernel">virtual/dist-kernel</a>.</p>
+<p>Enabling this USE flag on packages like <a href="https://packages.gentoo.org/packages/sys-fs/zfs">sys-fs/zfs</a> and <a href="https://packages.gentoo.org/packages/sys-fs/zfs-kmod">sys-fs/zfs-kmod</a> allows them to automatically be rebuilt against a newly updated kernel and, if applicable, will re-generate the initramfs accordingly.
+Manually rebuilding the initramfs</p>
+<p>If required, manually trigger such rebuilds by, after a kernel upgrade, executing:
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>root<span class="w"> </span><span class="c1">#emerge --ask @module-rebuild</span>
+</span></code></pre></div></p>
+<p>If any kernel modules (e.g. ZFS) are needed at early boot, rebuild the initramfs afterward via:
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>root<span class="w"> </span><span class="c1">#emerge --config sys-kernel/gentoo-kernel</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>root<span class="w"> </span><span class="c1">#emerge --config sys-kernel/gentoo-kernel-bin</span>
+</span></code></pre></div></p>
+<h4 id="installing-the-kernel-sources">Installing the kernel sources<a class="headerlink" href="#installing-the-kernel-sources" title="Permanent link">&para;</a></h4>
+<div class="admonition note">
+<p>This section is only relevant when using the following <strong>genkernel</strong>(hybrid) or manual kernel management approach.</p>
+</div>
+<p>When installing and compiling the kernel for amd64-based systems, Gentoo recommends the <a href="https://packages.gentoo.org/packages/sys-kernel/gentoo-sources">sys-kernel/gentoo-sources</a> package.</p>
+<p>Choose an appropriate kernel source and install it using emerge:
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>root<span class="w"> </span><span class="c1">#emerge --ask sys-kernel/gentoo-sources</span>
+</span></code></pre></div></p>
+<p>This will install the Linux kernel sources in /usr/src/ using the specific kernel version in the path. It will not create a symbolic link by itself without USE=symlink being enabled on the chosen kernel sources package.</p>
+<p>It is conventional for a /usr/src/linux symlink to be maintained, such that it refers to whichever sources correspond with the currently running kernel. However, this symbolic link will not be created by default. An easy way to create the symbolic link is to utilize eselect's kernel module.</p>
+<p>For further information regarding the purpose of the symlink, and how to manage it, please refer to Kernel/Upgrade.</p>
+<p>First, list all installed kernels:
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>root<span class="w"> </span><span class="c1">#eselect kernel list</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>Available<span class="w"> </span>kernel<span class="w"> </span>symlink<span class="w"> </span>targets:
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">  </span><span class="o">[</span><span class="m">1</span><span class="o">]</span><span class="w">   </span>linux-5.15.52-gentoo
+</span></code></pre></div></p>
+<p>In order to create a symbolic link called linux, use:
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>eselect<span class="w"> </span>kernel<span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="m">1</span>
+</span></code></pre></div></p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>root<span class="w"> </span><span class="c1">#ls -l /usr/src/linux</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>lrwxrwxrwx<span class="w">    </span><span class="m">1</span><span class="w"> </span>root<span class="w">   </span>root<span class="w">    </span><span class="m">12</span><span class="w"> </span>Oct<span class="w"> </span><span class="m">13</span><span class="w"> </span><span class="m">11</span>:04<span class="w"> </span>/usr/src/linux<span class="w"> </span>-&gt;<span class="w"> </span>linux-5.15.52-gentoo
+</span></code></pre></div>
+<h3 id="genkernel"><span id="2" class="jade">Genkernel</span><a class="headerlink" href="#genkernel" title="Permanent link">&para;</a></h3>
+<p>If an entirely manual configuration looks too daunting, system administrators should consider using genkernel as a hybrid approach to kernel maintenance.</p>
+<p>{++Genkernel provides a generic kernel configuration file, automatically generates the kernel, initramfs, and associated modules, and then installs the resulting binaries to the appropriate locations.++} {++This results in minimal and generic hardware support for the system's first boot, and allows for additional update control and customization of the kernel's configuration in the future.++}</p>
+<details class="info">
+<summary>Info</summary>
+<p>While using genkernel to maintain the kernel provides system administrators with more update control over the system's kernel, initramfs, and other options, it will require a time and effort commitment to perform future kernel updates as new sources are released. Those looking for a hands-off approach to kernel maintenance should use a distribution kernel.</p>
+<p>Misconception to believe genkernel automatically generates a custom kernel configuration for the hardware on which it is run;</p>
+<p>It uses a predetermined kernel configuration that supports most generic hardware and automatically handles the make commands necessary to assemble and install the kernel, the associate modules, and the initramfs file.</p>
+</details>
+<p>As a prerequisite, due to the firwmare USE flag being enabled by default for the sys-kernel/genkernel package, the package manager will also attempt to pull in the sys-kernel/linux-firmware package. The binary redistributable software licenses are required to be accepted before the linux-firmware will install.</p>
+<p>This license group can be accepted system-wide for any package by adding the @BINARY-REDISTRIBUTABLE as an ACCEPT_LICENSE value in the /etc/portage/make.conf file. It can be exclusively accepted for the linux-firmware package by adding a specific inclusion via a /etc/portage/package.license/linux-firmware file.</p>
+<p>If necessary, review the <a href="https://wiki.gentoo.org/wiki/Handbook:AMD64/Installation/Base#Optional:_Configure_the_ACCEPT_LICENSE_variable">methods of accepting software licenses</a> available in the Installing the base system chapter of the handbook, then make some changes for acceptable software licenses.</p>
+<p>If in analysis paralysis, the following will do the trick:
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>root<span class="w"> </span><span class="c1">#mkdir /etc/portage/package.license</span>
+</span></code></pre></div></p>
+<div class="admonition pied-piper">
+<p class="admonition-title">/etc/portage/package.license/linux-firmware</p>
+<p>Accept binary redistributable licenses for the linux-firmware package
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>sys-kernel/linux-firmware<span class="w"> </span>@BINARY-REDISTRIBUTABLE
+</span></code></pre></div></p>
+</div>
+<h4 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h4>
+<p>Explanations and prerequisites aside, install the <a href="https://packages.gentoo.org/packages/sys-kernel/genkernel">sys-kernel/genkernel</a> package:</p>
+<h4 id="generation">Generation<a class="headerlink" href="#generation" title="Permanent link">&para;</a></h4>
+<p>Compile the kernel sources by running genkernel all. Be aware though, as genkernel compiles a kernel that supports a wide array of hardware for differing computer architectures, this compilation may take quite a while to finish.</p>
+<div class="admonition note">
+<p>If the root partition/volume uses a filesystem other than ext4, it may be necessary to manually configure the kernel using genkernel --menuconfig all to add built-in kernel support for the particular filesystem(s) (i.e. not building the filesystem as a module).</p>
+<p>Users of LVM2 should add --lvm as an argument to the genkernel command below.</p>
+</div>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>root<span class="w"> </span><span class="c1">#genkernel --mountboot --install all</span>
+</span></code></pre></div>
+<p>Once genkernel completes, a kernel and an initial ram filesystem (initramfs) will be generated and installed into the /boot directory. Associated modules will be installed into the /lib/modules directory. The initramfs will be started immediately after loading the kernel to perform hardware auto-detection (just like in the live disk image environments).</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>root<span class="w"> </span><span class="c1">#ls /boot/vmlinu* /boot/initramfs*</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>root<span class="w"> </span><span class="c1">#ls /lib/modules</span>
+</span></code></pre></div>
+<h3 id="manual-configuration"><span id="3">Manual configuration</span><a class="headerlink" href="#manual-configuration" title="Permanent link">&para;</a></h3>
+<h4 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h4>
+<p>Manually configuring a kernel is often seen as the most difficult procedure a Linux user ever has to perform. Nothing is less true - after configuring a couple of kernels no one remembers that it was difficult!</p>
+<p>However, one thing is true: it is vital to know the system when a kernel is configured manually. Most information can be gathered by emerging sys-apps/pciutils which contains the lspci command:
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>root<span class="w"> </span><span class="c1">#emerge --ask sys-apps/pciutils</span>
+</span></code></pre></div></p>
+<div class="admonition note">
+<p>Inside the chroot, it is safe to ignore any pcilib warnings (like pcilib: cannot open <em>/sys/bus/pci/devices</em>) that <strong>lspci</strong> might throw out.</p>
+</div>
+<p>Another source of system information is to run lsmod to see what kernel modules the installation CD uses as it might provide a nice hint on what to enable.</p>
+<p>Now go to the kernel source directory and execute make menuconfig. This will fire up menu-driven configuration screen.</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>root<span class="w"> </span><span class="c1">#cd /usr/src/linux</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>root<span class="w"> </span><span class="c1">#make menuconfig</span>
+</span></code></pre></div>
+<div class="admonition success">
+<p class="admonition-title">Gentoo kernel configuration guide</p>
+<p>The Linux kernel configuration has many, many sections. Let's first list some options that must be activated (otherwise Gentoo will not function, or not function properly without additional tweaks). We also have a <a href="https://wiki.gentoo.org/wiki/Kernel/Gentoo_Kernel_Configuration_Guide">Gentoo kernel configuration guide</a> on the Gentoo wiki that might help out further.</p>
+</div>
+<h4 id="enabling-required-options">Enabling required options<a class="headerlink" href="#enabling-required-options" title="Permanent link">&para;</a></h4>
+<p>When using sys-kernel/gentoo-sources, it is strongly recommend the Gentoo-specific configuration options be enabled. These ensure that a minimum of kernel features required for proper functioning is available:</p>
+<div class="admonition pied-piper">
+<p class="admonition-title">Enable Gentoo-specific options</p>
+<p><span class="turquoise">KERNEL</span></p>
+<div class="language-text highlight"><pre><span></span><code>Gentoo Linux ---&gt;
+  Generic Driver Options ---&gt;
+    [*] Gentoo Linux support
+    [*]   Linux dynamic and persistent device naming (userspace devfs) support
+    [*]   Select options required by Portage features
+        Support for init systems, system and service manager ---&gt;
+          [*] OpenRC, runit and other script based systems and managers.
+          [*] systemd
+</code></pre></div>
+</div>
+<p>Naturally the choice in the last two lines depends on the selected init system (<a href="https://wiki.gentoo.org/wiki/OpenRC">OpenRC</a> vs. <a href="https://wiki.gentoo.org/wiki/Systemd">systemd</a>). It does not hurt to have support for both init systems enabled.</p>
+<h4 id="enabling-support-for-typical-system-components">Enabling support for typical system components<a class="headerlink" href="#enabling-support-for-typical-system-components" title="Permanent link">&para;</a></h4>
+<p>Make sure that every driver that is vital to the booting of the system (such as SATA controllers, NVMe block device support, filesystem support, etc.) is compiled in the kernel and not as a module, otherwise the system may not be able to boot completely.</p>
+<p>Next select the exact processor type. It is also recommended to enable MCE features (if available) so that users are able to be notified of any hardware problems. On some architectures (such as x86_64), these errors are not printed to <strong>dmesg</strong>, but to <ins>/dev/mcelog</ins>. This requires the <a href="https://packages.gentoo.org/packages/app-admin/mcelog">app-admin/mcelog</a> package.</p>
+<p>Also select Maintain a devtmpfs file system to mount at /dev so that critical device files are already available early in the boot process <em>(CONFIG_DEVTMPFS</em> and <em>CONFIG_DEVTMPFS_MOUNT)</em>:</p>
+<div class="admonition pied-piper">
+<p class="admonition-title">Enable devtmpfs support(_CONFIG_DEVTMPFS)</p>
+<p><span class="turquoise">KERNEL</span></p>
+<div class="language-text highlight"><pre><span></span><code>Device Driver ---&gt;
+  Generic Driver Options ---&gt;
+    [*] Maintain a devtmpfs filesystem to mount at /dev
+    [*]   Automount devtmpfs at /dev, after the kernel mounted the rootfs
+</code></pre></div>
+</div>
+<p>Verify SCSI disk support has been activated <em>(CONFIG_BLK_DEV_SD)</em>:</p>
+<div class="admonition pied-piper">
+<p class="admonition-title">Enabling SCSI disk support <em>(CONFIG_SCSI, CONFIG_BLK_DEV_SD)</em></p>
+<p><span class="turquoise">KERNEL</span></p>
+<div class="language-text highlight"><pre><span></span><code>Device Driver ---&gt;
+  SCSI device support ---&gt;
+    &lt;*&gt; SCSI device support
+    &lt;*&gt; SCSI disk support
+</code></pre></div>
+</div>
+<div class="admonition pied-piper">
+<p class="admonition-title">Enabling basic SATA and PATA support <em>(CONFIG_ATA_ACPI, CONFIG_SATA_PMP, CONFIG_SATA_AHCI, CONFIG_ATA_BMDMA, CONFIG_ATA_SFF, CONFIG_ATA_PIIX)</em></p>
+<p><span class="turquoise">KERNEL</span></p>
+<div class="language-text highlight"><pre><span></span><code>Device Driver ---&gt;
+  &lt;*&gt; Serial ATA and Parallel ATA drivers (libata) ---&gt;
+    [*] ATA ACPI Support
+    [*] SATA Poart Multiplier support
+    &lt;*&gt; AHCI SATA support (achi)
+    [*] ATA BMDMA support
+    [*] ATA SFF support (for legacy IDE and PATA)
+    &lt;*&gt; Intel ESB, ICH, PIIX3, PIIX4 PATA/SATA support (ata_piix)
+</code></pre></div>
+</div>
+<p>Verify basic NVMe support has been enabled:</p>
+<div class="admonition pied-piper">
+<p class="admonition-title">Enable basic NVMe support for Linux 4.4.x <em>(CONFIG_BLK_DEV_NVME)</em></p>
+<p><span class="turquoise">KERNEL</span></p>
+<div class="language-text highlight"><pre><span></span><code>Device Driver ---&gt;
+  &lt;*&gt; NVM Express block device
+</code></pre></div>
+</div>
+<div class="admonition pied-piper">
+<p class="admonition-title">Enable basic NVMe support for Linux 5.x.x <em>(CONFIG_DEVTMPFS)</em></p>
+<p><span class="turquoise">KERNEL</span></p>
+<div class="language-text highlight"><pre><span></span><code>Device Driver ---&gt;
+  NVME support ---&gt;
+    &lt;*&gt; NVM Express block device
+</code></pre></div>
+</div>
+<p>It does not hurt to enable the following additional NVMe support:</p>
+<div class="admonition pied-piper">
+<p class="admonition-title">Enabling additional NVMe support <em>(CONFIG_NVME_MULTIPATH, CONFIG_NVME_MULTIPATH, CONFIG_NVME_HWMON, CONFIG_NVME_FC, CONFIG_NVME_TCP, CONFIG_NVME_TARGET, CONFIG_NVME_TARGET_PASSTHRU, CONFIG_NVME_TARGET_LOOP, CONFIG_NVME_TARGET_FC, CONFIG_NVME_TARGET_FCLOOP, CONFIG_NVME_TARGET_TCP</em></p>
+<p><span class="turquoise">KERNEL</span></p>
+<div class="language-text highlight"><pre><span></span><code>[*] NVMe multipath support
+[*] NVME hardware monitoring
+&lt;M&gt; NVM Express over Fabrics FC host driver
+&lt;M&gt; NVM Express over Fabrics TCP host driver
+&lt;M&gt; NVM Traget support
+  [*]   NVMe Target Passthrough support
+  &lt;M&gt;   NVMe loopback device support
+  &lt;M&gt;   NVMe over Fabrics FC target driver
+  &lt; &gt;     NVMe over Fabrics FC Transport Loopback Test driver (NEW)
+  &lt;M&gt;   NVMe over Fabrics TCP target driver
+</code></pre></div>
+</div>
+<p>Now go to File Systems and select support for the filesystems that will be used by the system. Do not compile the file system that is used for the root filesystem as module, otherwise the system may not be able to mount the partition. Also select Virtual memory and /proc file system. Select one or more of the following options as needed by the system:</p>
+<div class="admonition pied-piper">
+<p class="admonition-title">Enable file system support <em>(CONFIG_EXT2_FS, CONFIG_EXT3_FS, CONFIG_EXT4_FS, CONFIG_BTRFS_FS, CONFIG_MSDOS_FS, CONFIG_VFAT_FS, CONFIG_PROC_FS, and CONFIG_TMPFS)</em></p>
+<p><span class="turquoise">KERNEL</span></p>
+<div class="language-text highlight"><pre><span></span><code>File systems ---&gt;
+  &lt;*&gt; Second extended fs support
+  &lt;*&gt; The Extended 3 (ext3) filesystem
+  &lt;*&gt; The Extended 4 (ext3) filesystem
+  &lt;*&gt; Btrfs filesystem support
+  DOS/FAT/NT Filesystems ---&gt;
+    &lt;*&gt; MSDOS fs support
+    &lt;*&gt; VFAT (Windows-95) fs support
+  Pseudo Filesystems ---&gt;
+    [*] /porc file system support
+    [*] Tmpfs virtual memory file system support (former shm fs)
+</code></pre></div>
+</div>
+<p>Most systems also have multiple cores at their disposal, so it is important to activate Symmetric multi-processing support (CONFIG_SMP):</p>
+<div class="admonition pied-piper">
+<p class="admonition-title">Activating SMP support <em>(CONFIG_SMP)</em></p>
+<p><span class="turquoise">KERNEL</span></p>
+<div class="language-text highlight"><pre><span></span><code>Processor type and features ---&gt;
+  [*] Symmetric multi-processing support
+</code></pre></div>
+</div>
+<p>If USB input devices (like keyboard or mouse) or other USB devices will be used, do not forget to enable those as well:</p>
+<div class="admonition pied-piper">
+<p class="admonition-title">Enable USB and human input device support <em>(CONFIG_HID_GENERIC, CONFIG_USB_HID, CONFIG_USB_SUPPORT, CONFIG_USB_XHCI_HCD, CONFIG_USB_EHCI_HCD, CONFIG_USB_OHCI_HCD, (CONFIG_HID_GENERIC, CONFIG_USB_HID, CONFIG_USB_SUPPORT, CONFIG_USB_XHCI_HCD, CONFIG_USB_EHCI_HCD, CONFIG_USB_OHCI_HCD, CONFIG_USB4)</em></p>
+<p><span class="turquoise">KERNEL</span></p>
+<div class="language-text highlight"><pre><span></span><code>Device Drivers ---&gt;
+  HID support  ---&gt;
+    -*- HID bus support
+    &lt;*&gt;   Generic HID driver
+    [*]   Battery level reporting for HID devices
+      USB HID suport ---&gt;
+        &lt;*&gt; USB HID transport layer
+[*] USB support ---&gt;
+  &lt;*&gt;       xHCI HCD (USB 3.0) support
+  &lt;*&gt;       EHCI HCD (USB 2.0) support
+  &lt;*&gt;       OHCI HCD (USB 1.1) support
+&lt;*&gt; Unified support for USB4 and Thunderbolt ---&gt;
+</code></pre></div>
+</div>
+<p>If PPPoE is used to connect to the Internet, or a dial-up modem, then enable the following options <em>(CONFIG_PPP, CONFIG_PPP_ASYNC, and CONFIG_PPP_SYNC_TTY)</em>:</p>
+<div class="admonition pied-piper">
+<p class="admonition-title">Enabling PPPoE support <em>(PPPoE, CONFIG_PPPOE, CONFIG_PPP_ASYNC, CONFIG_PPP_SYNC_TTY</em></p>
+<p><span class="turquoise">KERNEL</span></p>
+<div class="language-text highlight"><pre><span></span><code>Device Driver ---&gt;
+  Network device support ---&gt;
+    &lt;*&gt; PPP (point-to-point protocol) support
+    &lt;*&gt; PPP over Ethernet
+    &lt;*&gt; PPP support for async serial ports
+    &lt;*&gt; PPP support for sync tty point
+</code></pre></div>
+</div>
+<h4 id="architecture-specific-kernel-configuration">Architecture specific kernel configuration<a class="headerlink" href="#architecture-specific-kernel-configuration" title="Permanent link">&para;</a></h4>
+<p>Enable GPT partition label support if that was used previously when partitioning the disk (CONFIG_PARTITION_ADVANCED and CONFIG_EFI_PARTITION):</p>
+<div class="admonition pied-piper">
+<p class="admonition-title">Enable support for GPT</p>
+<p><span class="turquoise">KERNEL</span></p>
+<div class="language-text highlight"><pre><span></span><code>_*_ Enable the block layer ---&gt;
+   Partition Types ---&gt;
+    [*] Advanced partition selection
+    [*] EFI GUID Partition support
+</code></pre></div>
+</div>
+<p>Enable EFI stub support, EFI variables and EFI Framebuffer in the Linux kernel if UEFI is used to boot the system <em>(CONFIG_EFI, CONFIG_EFI_STUB, CONFIG_EFI_MIXED, CONFIG_EFI_VARS, and CONFIG_FB_EFI)</em>:</p>
+<div class="admonition pied-piper">
+<p class="admonition-title">Enable support for UEFI</p>
+<p><span class="turquoise">KERNEL</span></p>
+<div class="language-text highlight"><pre><span></span><code>Processor type and features ---&gt;
+   [*] EFI runtime service support
+   [*]   EFI stub support
+   [*]     EFI mixed-mode support
+
+Device Drivers
+    Firmware Drivers   ---&gt;
+        EFI (Extension Firmware Interface) Support  ---&gt;
+            &lt;*&gt; EFI Veriable Support via sysfs
+    Graphics support   ---&gt;
+        Frame buffer Devices  ---&gt;
+            &lt;*&gt; Support for frame buffer devices  ---&gt;
+                [*]     EFI-based Framebuffer Support
+</code></pre></div>
+</div>
+<h4 id="compiling-and-installing">Compiling and installing<a class="headerlink" href="#compiling-and-installing" title="Permanent link">&para;</a></h4>
+<p>With the configuration now done, it is time to compile and install the kernel. Exit the configuration and start the compilation process:
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>root<span class="w"> </span><span class="c1">#make &amp;&amp; make modules_install</span>
+</span></code></pre></div></p>
+<details class="note">
+<summary>Note</summary>
+<p>It is possible to enable parallel builds using make -jX with X being an integer number of parallel tasks that the build process is allowed to launch. This is similar to the instructions about /etc/portage/make.conf earlier, with the MAKEOPTS variable.</p>
+</details>
+<p>When the kernel has finished compiling, copy the kernel image to /boot/. This is handled by the make install command:
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>root<span class="w"> </span><span class="c1">#make install</span>
+</span></code></pre></div></p>
+<h4 id="optional-building-an-initramfs">Optional: Building an initramfs<a class="headerlink" href="#optional-building-an-initramfs" title="Permanent link">&para;</a></h4>
+<p>In certain cases it is necessary to build an initramfs - an initial ram-based file system. The most common reason is when important file system locations (like /usr/ or /var/) are on separate partitions. With an initramfs, these partitions can be mounted using the tools available inside the initramfs.</p>
+<p>Without an initramfs, there is a risk that the system will not boot properly as the tools that are responsible for mounting the file systems require information that resides on unmounted file systems. An initramfs will pull in the necessary files into an archive which is used right after the kernel boots, but before the control is handed over to the init tool. Scripts on the initramfs will then make sure that the partitions are properly mounted before the system continues booting.</p>
+<div class="admonition danger">
+<p class="admonition-title">Important</p>
+<p>If using genkernel, it should be used for both building the kernel and the initramfs. When using genkernel only for generating an initramfs, it is crucial to pass {++--kernel-config=/path/to/kernel.config++} to genkernel or the generated initramfs may not work with a manually built kernel. Note that manually built kernels go beyond the scope of support for the handbook. See the <a href="https://wiki.gentoo.org/wiki/Kernel/Configuration">kernel configuration</a> article for more information.</p>
+</div>
+<p>To install an initramfs, install <a href="https://packages.gentoo.org/packages/sys-kernel/dracut">sys-kernel/dracut</a> first, then have it generate an initramfs:</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>root<span class="w"> </span><span class="c1">#emerge --ask sys-kernel/dracut</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>root<span class="w"> </span><span class="c1">#dracut --kver=5.15.52-gentoo</span>
+</span></code></pre></div>
+<p>The initramfs will be stored in /boot/. The resulting file can be found by simply listing the files starting with initramfs:</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>root<span class="w"> </span><span class="c1">#ls /boot/initramfs*</span>
+</span></code></pre></div>
+<h2 id="kernel-modules">Kernel modules<a class="headerlink" href="#kernel-modules" title="Permanent link">&para;</a></h2>
+<h3 id="listing-available-kernel-modules">Listing available kernel modules<a class="headerlink" href="#listing-available-kernel-modules" title="Permanent link">&para;</a></h3>
+<div class="admonition note">
+<p>Hardware modules are optional to be listed manually. <strong>udev</strong> will normally load all hardware modules that are detected to be connected in most cases. However, it is not harmful for modules that will be automatically loaded to be listed. Modules cannot be loaded twice; they are either loaded or unloaded. Sometimes exotic hardware requires help to load their drivers.</p>
+</div>
+<p>The modules that need to be loaded during each boot in can be added to /etc/modules-load.d/<em>.conf files in the format of one module per line. When extra options are needed for the modules, they should be set in /etc/modprobe.d/</em>.conf files instead.</p>
+<p>To view all modules available for a specific kernel version, issue the following <strong>find</strong> command. Do not forget to substitute "<kernel version>" with the appropriate version of the kernel to search:</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>root<span class="w"> </span><span class="c1">#find /lib/modules/&lt;kernel version&gt;/ -type f -iname &#39;*.o&#39; -or -iname &#39;*.ko&#39; | less</span>
+</span></code></pre></div>
+<h3 id="force-loading-particular-kernel-modules">Force loading particular kernel modules<a class="headerlink" href="#force-loading-particular-kernel-modules" title="Permanent link">&para;</a></h3>
+<p>To force load the kernel to load the 3c59x.ko module (which is the driver for a specific 3Com network card family), edit the /etc/modules-load.d/network.conf file and enter the module name within it.</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>root<span class="w"> </span><span class="c1">#mkdir -p /etc/modules-load.d</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>root<span class="w"> </span><span class="c1">#nano -w /etc/modules-load.d/network.conf</span>
+</span></code></pre></div>
+<p>Note that the module's .ko file suffix is insignificant to the loading mechanism and left out of the configuration file:</p>
+<div class="admonition abstract">
+<p class="admonition-title">Force loading 3c59x module</p>
+<p><span class="message">FILE</span> /etc/modules-load.d/network.conf</p>
+<p>3c59x</p>
+</div>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../Base%20system/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Installing base system">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Installing base system
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../System/" class="md-footer__link md-footer__link--next" aria-label="Next: Configuring the system">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Configuring the system
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; .2020 ~ 2024. Darmarj.M
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+      
+    
+    
+    
+      
+      
+    
+    <a href="https://mas.to/@hydenzw" target="_blank" rel="noopener me" title="mas.to" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M433 179.11c0-97.2-63.71-125.7-63.71-125.7-62.52-28.7-228.56-28.4-290.48 0 0 0-63.72 28.5-63.72 125.7 0 115.7-6.6 259.4 105.63 289.1 40.51 10.7 75.32 13 103.33 11.4 50.81-2.8 79.32-18.1 79.32-18.1l-1.7-36.9s-36.31 11.4-77.12 10.1c-40.41-1.4-83-4.4-89.63-54a102.5 102.5 0 0 1-.9-13.9c85.63 20.9 158.65 9.1 178.75 6.7 56.12-6.7 105-41.3 111.23-72.9 9.8-49.8 9-121.5 9-121.5m-75.12 125.2h-46.63v-114.2c0-49.7-64-51.6-64 6.9v62.5h-46.33V197c0-58.5-64-56.6-64-6.9v114.2H90.19c0-122.1-5.2-147.9 18.41-175 25.9-28.9 79.82-30.8 103.83 6.1l11.6 19.5 11.6-19.5c24.11-37.1 78.12-34.8 103.83-6.1 23.71 27.3 18.4 53 18.4 175z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/darmarj" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://hub.docker.com/u/kenzzw" target="_blank" rel="noopener" title="hub.docker.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M349.9 236.3h-66.1v-59.4h66.1zm0-204.3h-66.1v60.7h66.1zm78.2 144.8H362v59.4h66.1zm-156.3-72.1h-66.1v60.1h66.1zm78.1 0h-66.1v60.1h66.1zm276.8 100c-14.4-9.7-47.6-13.2-73.1-8.4-3.3-24-16.7-44.9-41.1-63.7l-14-9.3-9.3 14c-18.4 27.8-23.4 73.6-3.7 103.8-8.7 4.7-25.8 11.1-48.4 10.7H2.4c-8.7 50.8 5.8 116.8 44 162.1 37.1 43.9 92.7 66.2 165.4 66.2 157.4 0 273.9-72.5 328.4-204.2 21.4.4 67.6.1 91.3-45.2 1.5-2.5 6.6-13.2 8.5-17.1zm-511.1-27.9h-66v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1zm78.1 0h-66.1v59.4h66.1zm-78.1-72.1h-66.1v60.1h66.1z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.footnote.tooltips", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+  
+      <script src="../../../assets/javascripts/bundle.56dfad97.min.js"></script>
+      
+    
+  <script src="../../../assets/javascripts/custom.fe17d8dd.min.js"></script>
+
+  </body>
+</html>
